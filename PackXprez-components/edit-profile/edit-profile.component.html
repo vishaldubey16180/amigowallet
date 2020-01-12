@@ -1,0 +1,130 @@
+<app-customer-layout></app-customer-layout>
+<br />
+<div class="container" style="text-align:center; background-color:lightcyan;color:black;border-radius: 25px;
+    border: 2px ;
+    padding: 20px;">
+  <!--<div style="text-align:center">-->
+  <form #editProfileForm="ngForm" (ngSubmit)="UpdateProfile(editProfileForm)">
+    <div class="fieldsetbig" style="border-radius: 25px;">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <label style="text-align:left">Name:</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="name" type="text" [ngModel]="custObj.name" #nameValidation="ngModel" ngModel required>
+          <div style="text-align:center; padding-top:5px; color:red;">
+            <div *ngIf="nameValidation.errors && (nameValidation.dirty||nameValidation.touched)">
+              <div [hidden]="!nameValidation.errors.required">
+                Name is mandatory
+              </div>
+              <div [hidden]="!nameValidation.errors.pattern">
+                Name is invalid
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <label style="text-align:left">Email Id:</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="emailId" type="email" #emailValidator="ngModel" [ngModel]="custObj.emailId" ngModel readonly required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+          <div style="text-align:center; padding-top:5px; color:red;">
+            <div *ngIf="emailValidator.errors && (emailValidator.dirty||emailValidator.touched)">
+              <div [hidden]="!emailValidator.errors.required">
+                email id is mandatory
+              </div>
+              <div [hidden]="!emailValidator.errors.pattern">
+                email id is invalid
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <label style="text-align:left">Password:</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="password" type="password" ngModel [ngModel]="custObj.password" required #passwordValidation="ngModel">
+          <div style="text-align:center; padding-top:5px; color:red;">
+            <div *ngIf="passwordValidation.errors && (passwordValidation.dirty||passwordValidation.touched)">
+              <div [hidden]="!passwordValidation.errors.required">
+                Password is mandatory
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <label style="text-align:left">Confirm Password:</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="Cpassword" type="password" #confirmPasswordValidation="ngModel" ngModel required>
+          <div style="text-align:center; padding-top:5px; color:red;">
+            <div *ngIf="confirmPasswordValidation.errors && (confirmPasswordValidation.dirty||confirmPasswordValidation.touched)">
+              <div [hidden]="!confirmPasswordValidation.errors.required">
+                Password confirmation is mandatory
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <label style="text-align:left">Contact Number</label>
+        </div>
+        <div class="col-md-4">
+          <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="conNumber" type="text" ngModel required #contactValidation="ngModel" [ngModel]="custObj.contactNo" maxlength="10">
+          <div style="text-align:center; padding-top:5px; color:red;">
+            <div *ngIf="contactValidation.errors && (contactValidation.dirty||contactValidation.touched)">
+              <div [hidden]="!contactValidation.errors.required">
+                Contact number is mandatory
+              </div>
+              <div [hidden]="!contactValidation.errors.pattern">
+                Contact numberis invalid
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br />
+
+
+
+      <div class="form-group"  style="text-align:center">
+        <div>
+          <input style="border-radius: 25px;border: 0.5px solid grey ;padding: 10px;" type="submit" value="Submit" />
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-3">
+      <select style="border-radius: 25px;border: 0.5px solid grey ;padding: 5px;margin:5px" #selectDropDown (change)="UpdateAddress(selectDropDown.value)">
+        <option value="0">Addresses</option>
+        <option *ngFor="let a of addObj" value={{a.addressId}}>{{a.buildingNo}}, {{a.pincode}} </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <a href=""  routerLink="/addAddress">Add Address</a>
+    </div>
+  </div>
+</div>
+<!--</div>-->

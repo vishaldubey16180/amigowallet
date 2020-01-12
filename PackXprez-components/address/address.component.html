@@ -1,0 +1,98 @@
+<app-customer-layout></app-customer-layout>
+<br/>
+<br/>
+<div class="fieldsetsmall" style="text-align:center; background-color:lightcyan;color:black;border-radius: 25px;
+    border: 2px ;
+    padding: 20px;">
+  <form #addressForm="ngForm" (ngSubmit)="AddAddress(addressForm)">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <label style="text-align:left">Building No:</label>
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="buildingNo" type="text" ngModel required #bulidingValidation="ngModel" >
+        <div style="text-align:center; padding-top:5px; color:red;">
+          <div *ngIf="bulidingValidation.errors && (bulidingValidation.dirty||bulidingValidation.touched)">
+            <div [hidden]="!bulidingValidation.errors.required">
+              Buliding number is mandatory
+            </div>
+            <div [hidden]="!bulidingValidation.errors.pattern">
+              Buliding number is invalid
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br />
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <label style="text-align:left">Street No:</label>
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="streetNo" type="text" ngModel required #streetValidation="ngModel">
+        <div style="text-align:center; padding-top:5px; color:red;">
+          <div *ngIf="streetValidation.errors && (streetValidation.dirty||streetValidation.touched)">
+            <div [hidden]="!streetValidation.errors.required">
+              Street number is mandatory
+            </div>
+            <div [hidden]="!streetValidation.errors.pattern">
+              Street number is invalid
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br />
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <label style="text-align:left">Locality:</label>
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="locality" type="text" ngModel required #locValidation="ngModel">
+        <div style="text-align:center; padding-top:5px; color:red;">
+          <div *ngIf="locValidation.errors && (locValidation.dirty||locValidation.touched)">
+            <div [hidden]="!locValidation.errors.required">
+              Locality is mandatory
+            </div>
+            <div [hidden]="!locValidation.errors.pattern">
+              Locality is invalid
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br />
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <label style="text-align:left">Pincode:</label>
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" style="border-radius: 25px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" name="pincode" type="text" ngModel required #pinValidation="ngModel">
+      </div>
+      <div style="text-align:center; padding-top:5px; color:red;">
+        <div *ngIf="pinValidation.errors && (pinValidation.dirty||pinValidation.touched)">
+          <div [hidden]="!pinValidation.errors.required">
+            Pincode is mandatory
+          </div>
+          <div [hidden]="!pinValidation.errors.pattern">
+            Pincode is invalid
+          </div>
+        </div>
+      </div>
+    </div><br />
+
+    <div class="form-group"  style="text-align:center">
+      <div>
+        <input style="border-radius: 25px;border: 0.5px solid grey;padding: 10px;" type="submit" value="Add Address" />
+      </div>
+    </div>
+  </form>
+</div>

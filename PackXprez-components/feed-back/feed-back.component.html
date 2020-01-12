@@ -1,0 +1,40 @@
+<app-customer-layout></app-customer-layout>
+
+<br/>
+<br/>
+<div style="text-align:center;">
+  <h1>FeedBack</h1>
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-md-4" style="text-align:right">
+      <label>Feedback Type:</label>
+    </div>
+    <div class="col-md-4"style="text-align:left">
+      <select style="border-radius: 25px;border: 1.5px ;padding: 15px;" [(ngModel)]="selectedValue" (change)="feedBackType()">
+
+        <option *ngFor="let item of data" [ngValue]="item" selected="">{{item.name}}</option>
+      </select>
+      
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-md-4" style="text-align:right">
+      <label>Comments:</label>
+    </div>
+    <div class="col-md-4">
+      <textarea style="border-radius: 25px;border: 1.5px solid black;padding: 15px;" #comment name="comment" rows="4" cols="45" maxlength="100"></textarea>
+    </div>
+  </div>
+
+  <br />
+  <br />
+  <div class="form-group"  style="text-align:center">
+    <button style="border-radius: 25px;border: 1.5px solid grey;padding: 10px;" type="submit" class="btn-link" (click)="custFeedback(comment.value)">Submit</button>
+  </div>
+
+  <br />
+  <br />
+

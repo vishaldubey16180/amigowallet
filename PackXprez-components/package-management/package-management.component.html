@@ -1,0 +1,41 @@
+<app-manager-layout></app-manager-layout>
+<div style="text-align:center;">
+  <h1> Package Management</h1>
+  <br />
+  <br />
+
+  <div class="table-responsive">
+    <table class="table" style="border:5px solid rgba(200,230,242,2);" *ngIf="package && package.length!=0;">
+      <tr style=" background-color:rgba(220,230,240,3); font-size:12pt;">
+        <th style="text-align:center;">AWB Number</th>
+        <th style="text-align:center;">Transaction ID </th>
+        <th style="text-align:center;"> From Address</th>
+        <th style="text-align:center;">To Address</th>
+        <th style="text-align:center;" colspan="2">Update Status</th>
+      </tr>
+      <tr style="background-color:white" *ngFor="let pack of package">
+        <td>{{pack.awbno}}</td>
+        <td>{{pack.tid}}</td>
+        <td>{{pack.fromAddress}}</td>
+        <td>{{pack.toAddress}}</td>
+        <td *ngIf="pack.status=='Waiting'" ><button style="border-radius:10px" #pickedUp name="pickedUp" (click)="GenerateAwb(pack.tid)">Picked Up</button></td>
+        <td *ngIf="pack.status=='Waiting'"><button style="border-radius:10px" #pickedFailed name="pickedFailed" (click)="UpdateStatus(pack.tid,'Picked Failed')">Picked Failed</button></td>
+        <td *ngIf="pack.status=='Picked'"><button style="border-radius:10px" #delivered name="deliverd" (click)="UpdateStatus(pack.tid,'Delivered')">Delivered</button></td>
+        <td *ngIf="pack.status=='Picked'"><button style="border-radius:10px" #notDelivered name="notDeliverd" (click)="UpdateStatus(pack.tid,'Delivery Failed')">Not Delivered</button></td>
+        <td *ngIf="pack.status=='Picked Failed'">PickUp Failed</td>
+        <td *ngIf="pack.status=='Picked Failed'"></td>
+        <td *ngIf="pack.status=='Delivered'">Delivered</td>
+        <td *ngIf="pack.status=='Delivered'"></td>
+        <td *ngIf="pack.status=='Delivery Failed'">Delivery Failed</td>
+        <td *ngIf="pack.status=='Delivery Failed'"></td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="showMessageDiv">
+    <h4 class="jumbotron" style="text-align:center">No Transactions Available</h4>
+  </div>
+</div>
+
+
+
+

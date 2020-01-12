@@ -1,0 +1,48 @@
+<div *ngIf="commonLayout">
+  <app-common-layout></app-common-layout>
+</div>
+<div *ngIf="customerLayout">
+  <app-customer-layout></app-customer-layout>
+</div>
+<div *ngIf="managerLayout">
+  <app-manager-layout></app-manager-layout>
+</div>
+
+
+<!--<p></p><a routerLink="/home" (click)="LogOut()">Logout</a>
+<p></p><a routerLink="/login">Login</a>
+<p></p><a routerLink="/registration">Register</a>
+<p></p><a routerLink="/editProfile">Edit Profile</a>
+<p></p><a routerLink="/check">Check Availability</a>-->
+
+
+<div class="myContent; container-fluid" style="text-align:center">
+  <div class="jumbotron" style="text-align:center; margin-top:70px;border-radius: 25px;
+    border: 2px ;
+    padding: 20px;">
+    <h2>PackXprez Welcomes You!!!</h2>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+      <p style="text-align:left">
+        PackXprez is an innovative logistics industry. PackXprez provides the following services<br />
+        1. Overnight,Express and Standard mode of transportation.<br />
+        2. Pickup and packing<br />
+        3. Insuranse coverage<br />
+        4. Warehousing and Inventory Management Systems
+      </p>
+
+      </div>
+      <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+          <img class="img-thumbnail" src="src/app/images/deliver.jpg" style="height:300px;width:1000px;display:block;margin:0px auto;border-radius:25px" />
+        </div>
+        <div class="col-md-1"></div>
+
+      </div>
+    </div>
+  </div>

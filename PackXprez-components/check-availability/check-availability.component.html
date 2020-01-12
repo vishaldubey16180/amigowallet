@@ -1,0 +1,60 @@
+<app-common-layout></app-common-layout>
+<br />
+<div class="container" style="text-align:center; background-color:lightcyan;border-radius: 25px;border: 1.5px;padding: 20px;">
+  <!--<div style="text-align:center; background-color:antiquewhite">-->
+  <br />
+  <h2>Check Availability</h2>
+  <br />
+  <form #checkavailability="ngForm" (ngSubmit)="CheckAvailability(checkavailability)">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <label>Sender's Pincode</label>
+      </div>
+      <div class="col-md-5">
+        <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" #fromValidator="ngModel" name="frompin" type="text" maxlength="6" ngModel required pattern="[0-9]{6}">
+        <div *ngIf="fromValidator.errors && (fromValidator.dirty || fromValidator.touched)">
+          <div [hidden]="!fromValidator.errors.required">
+            From Pincode is Required
+          </div>
+          <div [hidden]="!fromValidator.errors.pattern">
+            Enter Valid Pincode
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <label>Delivery Pincode</label>
+      </div>
+      <div class="col-md-5">
+        <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" #toValidator="ngModel" name="topin" type="text" required maxlength="6" ngModel pattern="[0-9]{6}">
+        <div *ngIf="toValidator.errors && (toValidator.dirty|| toValidator.touched)">
+          <div [hidden]="!toValidator.errors.required">
+            Delivery Pincode is mandatory
+          </div>
+          <div [hidden]="!toValidator.errors.pattern">
+            Enter Valid Pincode
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+
+    </div>
+    <br />
+    <div class="form-group"  style="text-align:center">
+      <button style="border-radius: 25px;border: 1.5px solid grey;padding: 5px;" type="submit" class="btn-link" [disabled]="!checkavailability.form.valid">Check Delivery Availability</button>&nbsp;
+      <button style="border-radius: 25px;border: 1.5px solid grey;padding: 5px;" class="btn-link" (click)="navigateToHome()">Cancel</button>
+    </div>
+    <br />
+    <!--<div style="text-align:center;color:red">
+      {{msg}}
+    </div>-->
+  </form>
+</div>
+<!--</div>-->

@@ -1,0 +1,41 @@
+<app-common-layout></app-common-layout>
+<br />
+<div class="container" style="text-align:center; background-color:white;border-radius: 25px;border: 1.5px;padding: 20px;">
+  <!--<div class="container">  -->
+  <br />
+  <div class="row">
+    <div class="col-md-5" style="align-self:center">
+      <img src="src/app/images/tp.png" />
+    </div>
+    <div class="col-md-7">
+
+      <h2>Track Your Package Status</h2>
+      <br />
+      <form #checkavailability="ngForm">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-3">
+            <label>AWB Number</label>
+          </div>
+          <div class="col-md-5">
+            <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" #awbValidator="ngModel" name="awbNo" type="text" maxlength="12" ngModel required>
+            <div *ngIf="awbValidator.errors && (awbValidator.dirty || awbValidator.touched)">
+              <div [hidden]="!awbValidator.errors.required">
+                Please Enter AWB Number
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <br />
+        <div class="form-group"  style="text-align:center">
+          <button style="border-radius: 25px;border: 1.5px solid grey;padding: 5px;" type="submit" class="btn-link" [disabled]="!awbValidator.valid" (click)="TackStatus(awbValidator.value)">Check Package Status</button>&nbsp;
+          <button style="border-radius: 25px;border: 1.5px solid grey;padding: 5px;" class="btn-link" (click)="navigateToHome()">Cancel</button>
+        </div>
+        <br />
+      </form>
+    </div>
+  </div>
+</div>
+<!--</div>-->

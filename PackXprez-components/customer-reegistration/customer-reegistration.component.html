@@ -1,0 +1,220 @@
+<app-common-layout></app-common-layout>
+<div class="container">
+  <div class="container" style="text-align:center; background-color:lightcyan;color:black;border-radius: 25px;
+    border: 2px ;
+    padding: 20px;">
+    <div>
+      <br />
+      <h2 style="text-align:center; color:black"><strong> Register</strong></h2>
+      <br />
+      <!--<a routerLink="\home" (click)="LogOut()" style="align-content:left">Logout</a>-->
+    </div>
+    <form #registerForm="ngForm" (ngSubmit)="RegisterCustomer(registerForm)">
+      <div class="fieldsetbig" style="border-radius:25px">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Name:</label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="name" type="text" #nameValidation="ngModel" ngModel required pattern="^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$">
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="nameValidation.errors && (nameValidation.dirty||nameValidation.touched)">
+                <div [hidden]="!nameValidation.errors.required">
+                  Name is mandatory
+                </div>
+                <div [hidden]="!nameValidation.errors.pattern">
+                  Name is invalid
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Email Id:</label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="emailId" type="email" #emailValidator="ngModel" ngModel required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="emailValidator.errors && (emailValidator.dirty||emailValidator.touched)">
+                <div [hidden]="!emailValidator.errors.required">
+                  email id is mandatory
+                </div>
+                <div [hidden]="!emailValidator.errors.pattern">
+                  email id is invalid
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Password:</label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="password" type="password" [(ngModel)]="password" required #passwordValidation="ngModel" maxlength="16" minlength="8">
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="passwordValidation.errors && (passwordValidation.dirty||passwordValidation.touched)">
+                <div [hidden]="!passwordValidation.errors.required">
+                  Password is mandatory
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Confirm Password:</label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="Cpassword" type="password" #confirmPasswordValidation="ngModel" ngModel required maxlength="16" minlength="8">
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="confirmPasswordValidation.errors && (confirmPasswordValidation.dirty||confirmPasswordValidation.touched)" maxlength="16" minlength="8">
+                <div [hidden]="!confirmPasswordValidation.errors.required">
+                  Password confirmation is mandatory
+                </div>
+              </div>
+
+              <!--<div *ngIf="confirmPasswordValidation.dirty">
+              <div [hidden]="Cpassword.value==password.value">
+                Password confirmation is mandatory
+              </div>
+                <div [hidden]="Cpassword.value!=password.value">
+                Correct password
+              </div>
+              </div>-->
+            </div>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Contact Number</label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="conNumber" type="text" ngModel required #contactValidation="ngModel" maxlength="10" minlength="10" pattern="[0-9]{10}">
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="contactValidation.errors && (contactValidation.dirty||contactValidation.touched)">
+                <div [hidden]="!contactValidation.errors.required">
+                  Contact number is mandatory
+                </div>
+                <div [hidden]="!contactValidation.errors.pattern">
+                  Contact numberis invalid
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-3"><h3>Address:</h3></div>
+        </div>
+        <div class="fieldsetsmall" style="text-align:center;border-radius:25px">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <label style="text-align:left">Building No:</label>
+            </div>
+            <div class="col-md-4">
+              <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="buildingNo" type="text" ngModel required #bulidingValidation="ngModel" pattern="^[A-Za-z0-9]+$">
+              <div style="text-align:center; padding-top:5px; color:red;">
+                <div *ngIf="bulidingValidation.errors && (bulidingValidation.dirty||bulidingValidation.touched)">
+                  <div [hidden]="!bulidingValidation.errors.required">
+                    Buliding number is mandatory
+                  </div>
+                  <div [hidden]="!bulidingValidation.errors.pattern">
+                    Buliding number is invalid
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><br />
+
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <label style="text-align:left">Street No:</label>
+            </div>
+            <div class="col-md-4">
+              <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="streeetNo" type="text" ngModel required #streetValidation="ngModel" pattern="^[A-Za-z0-9]+$">
+              <div style="text-align:center; padding-top:5px; color:red;">
+                <div *ngIf="streetValidation.errors && (streetValidation.dirty||streetValidation.touched)">
+                  <div [hidden]="!streetValidation.errors.required">
+                    Street number is mandatory
+                  </div>
+                  <div [hidden]="!streetValidation.errors.pattern">
+                    Street number is invalid
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><br />
+
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <label style="text-align:left">Locality:</label>
+            </div>
+            <div class="col-md-4">
+              <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="locality" type="text" ngModel required #locValidation="ngModel" pattern="^[A-Za-z]+$">
+              <div style="text-align:center; padding-top:5px; color:red;">
+                <div *ngIf="locValidation.errors && (locValidation.dirty||locValidation.touched)">
+                  <div [hidden]="!locValidation.errors.required">
+                    Locality is mandatory
+                  </div>
+                  <div [hidden]="!locValidation.errors.pattern">
+                    Locality is invalid
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><br />
+
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <label style="text-align:left">Pincode:</label>
+            </div>
+            <div class="col-md-4">
+              <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" name="pincode" type="text" ngModel required #pinValidation="ngModel" minlength="6" maxlength="6" pattern="^[1-9][0-9]{5}$">
+            </div>
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="pinValidation.errors && (pinValidation.dirty||pinValidation.touched)">
+                <div [hidden]="!pinValidation.errors.required">
+                  Pincode is mandatory
+                </div>
+                <div [hidden]="!pinValidation.errors.pattern">
+                  Pincode is invalid
+                </div>
+              </div>
+            </div>
+          </div><br />
+        </div>
+        <div class="form-group"  style="text-align:center">
+          <div>
+            <input style="border-radius: 25px;border: 1.5px solid grey;padding: 15px;margin:10px " type="submit" value="Submit" [disabled]="!registerForm.valid"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,325 @@
+`<app-customer-layout></app-customer-layout>
+<br />
+<div class="container" style="text-align:center; background-color:lightcyan;color:black;border-radius: 25px;
+    border: 2px ;
+    padding: 20px;">
+  <!--<div style="text-align:center; background-color:antiquewhite">-->
+  <br />
+  <h2 [hidden]="!showcheck">Check Availability</h2>
+  <br />
+  <br />
+  <h2 [hidden]="showcheck">Schedule Pickup</h2>
+  <br />
+  <form #schedulePickup="ngForm" (ngSubmit)="SchedulePackage(schedulePickup)">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <label>Pickup Pin code</label>
+      </div>
+      <div class="col-md-5">
+        <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" #fromValidator="ngModel" name="frompin" type="text" maxlength="6" ngModel required pattern="[0-9]{6}">
+        <div *ngIf="fromValidator.errors && (fromValidator.dirty || fromValidator.touched)">
+          <div [hidden]="!fromValidator.errors.required">
+            Pickup Pincode is Required
+          </div>
+          <div [hidden]="!fromValidator.errors.pattern">
+            Enter Valid Pincode
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <label>Delivery Pin code</label>
+      </div>
+      <div class="col-md-5">
+        <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" #toValidator="ngModel" name="topin" type="text" required maxlength="6" ngModel pattern="[0-9]{6}">
+        <div *ngIf="toValidator.errors && (toValidator.dirty|| toValidator.touched)">
+          <div [hidden]="!toValidator.errors.required">
+            Delivery Pincode is mandatory
+          </div>
+          <div [hidden]="!toValidator.errors.pattern">
+            Enter Valid Pincode
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <br />
+    <div class="form-group"  style="text-align:Right">
+      <button class="btn-link" [disabled]="fromValidator.errors || toValidator.errors || nocheck" (click)="CheckAvailability(fromValidator.value, toValidator.value)">Check Delivery Availability</button>&nbsp;
+      <button class="btn-link" (click)="navigateToHome()">Cancel</button>
+    </div>
+    <br />
+
+    <div [hidden]="showDiv">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label> Shipment Type</label>
+        </div>
+        <div class="col-md-5">
+          <select id="shipment" #selectShipment (change)="shipmentValue(selectShipment.value)">
+            <option value="0">--Select--</option>
+            <option value="Heavy"> Heavy</option>
+            <option value="Perishable"> Perishable</option>
+            <option value="Fragile">Fragile</option>
+          </select>
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label> Dimensions:</label>
+        </div>
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col">
+              <input class="form-control" name="length" #length="ngModel" type="text" ngModel required>
+            </div>L *
+            <div class="col">
+              <input  class="form-control" #breadth="ngModel" name="breadth" type="text" ngModel required>
+            </div>B *
+            <div class="col">
+              <input  class="form-control" #height="ngModel" name="height" type="text" ngModel required>
+            </div>H
+            <div *ngIf="(length.errors && (length.dirty || length.touched)) || (breadth.errors && (breadth.dirty || breadth.touched)) ||(height.errors && (height.dirty || height.touched))">
+              <div [hidden]="!length.errors.required || !breadth.errors.required || !height.errors.required">
+                All dimensions are Required
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label>Approx. Weight</label>
+        </div>
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-9">
+              <input style="border-radius: 10px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" class="form-control" #Aweight="ngModel" name="AWeight" type="text" ngModel required>
+            </div>
+            <div class="col-md-3">
+              <select #selectWeight (change)="selectAWeight(selectWeight.value)">
+                <option value="0">--Select--</option>
+                <option value="1"> Kg(s)</option>
+                <option value="2"> ton(s)</option>
+              </select>
+            </div>
+            <div *ngIf="(Aweight.errors && (Aweight.dirty || Aweight.touched))">
+              <div [hidden]="!Aweight.errors.required">
+                Approx. Weight is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div  class="col-md-3">
+          Delivery option:
+        </div>
+        <div class="col-md-5">
+          <select id="delivery" #selectDelivery (change)="selectDeliveryOpt(selectDelivery.value)">
+            <option value="0">--Select--</option>
+            <option value="Overnight"> Overnight</option>
+            <option value="Express"> Express</option>
+            <option value="Standard">Standard</option>
+          </select>
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          Choose time slot:
+        </div>
+        <div class="col-md-5">
+          <select  id="timeslot">
+            <option value="0">--Select--</option>
+            <option value="1">9AM-12PM</option>
+            <option value="2">2PM-5PM</option>
+          </select>
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          Choose pick up Address
+        </div>
+        <div class="col-md-5">
+          <select  #selectAdd (change)="SelectAddress(selectAdd.value)">
+            <option value="0">--Select--</option>
+            <option *ngFor="let a of addObj" value={{a.addressId}}>Address {{a.addressId}} </option>
+          </select>
+
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          Reciever's Address
+        </div>
+        <div class="col-md-5"></div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="fieldsetsmall" style="text-align:center;border-radius:10px">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Building No:</label>
+          </div>
+          <div class="col-md-4">
+            <input style="border-radius: 10px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" class="form-control" name="buildingNo" type="text" ngModel required #bulidingValidation="ngModel">
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="bulidingValidation.errors && (bulidingValidation.dirty||bulidingValidation.touched)">
+                <div [hidden]="!bulidingValidation.errors.required">
+                  Buliding number is mandatory
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Street No:</label>
+          </div>
+          <div class="col-md-4">
+            <input style="border-radius: 10px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" class="form-control" name="streeetNo" type="text" ngModel required #streetValidation="ngModel">
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="streetValidation.errors && (streetValidation.dirty||streetValidation.touched)">
+                <div [hidden]="!streetValidation.errors.required">
+                  Street number is mandatory
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Locality:</label>
+          </div>
+          <div class="col-md-4">
+            <input style="border-radius: 10px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" class="form-control" name="locality" type="text" ngModel required #locValidation="ngModel">
+            <div style="text-align:center; padding-top:5px; color:red;">
+              <div *ngIf="locValidation.errors && (locValidation.dirty||locValidation.touched)">
+                <div [hidden]="!locValidation.errors.required">
+                  Locality is mandatory
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Pincode:</label>
+          </div>
+          <div class="col-md-4">
+            <input style="border-radius: 10px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" class="form-control" name="pincode" type="text" ngModel required #pinValidation="ngModel">
+          </div>
+          <div style="text-align:center; padding-top:5px; color:red;">
+            <div *ngIf="pinValidation.errors && (pinValidation.dirty||pinValidation.touched)">
+              <div [hidden]="!pinValidation.errors.required">
+                Pincode is mandatory
+              </div>
+            </div>
+          </div>
+        </div><br />
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <label style="text-align:left">Contact Number:</label>
+          </div>
+          <div class="col-md-4">
+            <input style="border-radius: 10px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" class="form-control" name="conNumber" type="text" ngModel required #conValidation="ngModel">
+          </div>
+          <div style="text-align:center; padding-top:5px; color:red;">
+            <div *ngIf="conValidation.errors && (conValidation.dirty||conValidation.touched)">
+              <div [hidden]="!conValidation.errors.required">
+                Contact number is mandatory
+              </div>
+            </div>
+          </div>
+        </div><br />
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3"> Choose Approx. Cost</div>
+        <div class="col-md-5">
+          <input style="border-radius: 10px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" class="form-control" #ACost="ngModel" name="ACost" type="text" ngModel required>
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+          <label>Packaging:</label>
+        </div>
+        <div class="col-md-5">
+          <input style="border-radius: 10px;border: 0.5px solid black;padding: 20px;
+    height: 15px;" type="checkbox" [(ngModel)]="theCheckbox" data-md-icheck (change)="toggleVisibility()" /><br />
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-3" [hidden]="!showCost">
+          <button  (click)="calculateCost(height.value,breadth.value,length.value,Aweight.value)">Final Cost</button>
+        </div>
+        <div class="col-md-5" [hidden]="showCost">
+          Calculate cost : Rs {{aCost}} only
+        </div>
+        <div class="col-md-2"></div>
+      </div><br />
+
+      <br />
+      <div class="form-group"  style="text-align:center">
+        <button class="btn-link" [disabled]="!schedulePickup.valid" >Schedule Pickup</button>&nbsp;
+        <button class="btn-link" (click)="navigateToHome()">Cancel</button>
+      </div>
+      <br />
+
+
+
+    </div>   
+  </form>
+</div>

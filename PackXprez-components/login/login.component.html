@@ -1,0 +1,78 @@
+<app-common-layout></app-common-layout>
+<!--#ip2 {
+    border-radius: 25px;
+    border: 2px solid #609;
+    padding: 20px;
+    width: 200px;
+    height: 15px;
+}-->
+<div class="container" style="text-align:center; background-color:white;color:black;border-radius: 25px;
+    border: 2px ;
+    padding: 20px;">
+  <!--<div class="container" style="text-align:center; background-color:white;color:black;border-radius: 25px;
+    border: 2px ;
+    padding: 20px;">-->
+    <br />
+    <div class="row">
+      <div class="col-md-5"style="align-self:center">
+        <img src="src/app/images/login.png"/>
+      </div>
+      <div class="col-md-7">
+        <h2>Login</h2>
+        <br />
+        <h6>All fields are mandatory</h6>
+        <br />
+        <form #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6" style="align-self:center">
+                
+              <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" #emailValidator="ngModel" name="emailId" type="email" ngModel required  pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" placeholder="Email" />
+                
+              <div *ngIf="emailValidator.errors && (emailValidator.dirty||emailValidator.touched)">
+                <div [hidden]="!emailValidator.errors.required">
+                  Email id is mandatory
+                </div>
+                <div [hidden]="!emailValidator.errors.pattern">
+                  Email id is invalid
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2"><label></label></div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-1"> &nbsp;
+              <!--<label>Password</label>-->
+            </div>
+            <div class="col-md-6">
+              <input class="form-control" style="border-radius: 25px;border: 1.5px solid black;padding: 20px;
+    height: 15px;" #passwordValidator="ngModel" name="userPassword" type="password" ngModel required placeholder="Password"  maxlength="16" minlength="8">
+              <div *ngIf="passwordValidator.errors &&(passwordValidator.dirty||passwordValidator.touched)">
+                <div [hidden]="!passwordValidator.errors.required">
+                  password is mandatory
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">&nbsp;</div>
+            <div class="col-md-2">&nbsp;</div>
+
+          </div>
+          <br />
+          <div class="form-group"  style="text-align:center">
+            <button type="submit" style="border-radius: 25px;border: 1.5px solid grey;padding: 5px;" class="btn-link" [disabled]="!loginForm.valid">Login</button>&nbsp;
+            <button class="btn-link" style="border-radius: 25px;border: 1.5px solid grey;padding: 5px;" (click)="navigateToHome()">Cancel</button>
+           <!-- <button routerLink="/home" style="border-radius: 25px;border: 1.5px solid grey;padding: 5px;">Cancel</button>-->
+          </div>
+          <br />
+          <div *ngIf="msgBox" style="text-align:center; color:red;">
+            <h4>{{msg}}</h4>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
