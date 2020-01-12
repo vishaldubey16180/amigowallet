@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infosys.PackXprez.DataAccessLayer", "Infosys.PackXprez.DataAccessLayer\Infosys.PackXprez.DataAccessLayer.csproj", "{FEAA2520-4390-481F-AB95-314058E99CBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infosys.PackXprez.WebService", "Infosys.PackXprez.WebService\Infosys.PackXprez.WebService.csproj", "{FC770A46-1143-41AA-B13A-270BAEF98DED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject2", "UnitTestProject2\UnitTestProject2.csproj", "{AE259A69-DAD9-4DD3-84A1-9627F4E1E428}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEAA2520-4390-481F-AB95-314058E99CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEAA2520-4390-481F-AB95-314058E99CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEAA2520-4390-481F-AB95-314058E99CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEAA2520-4390-481F-AB95-314058E99CBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC770A46-1143-41AA-B13A-270BAEF98DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC770A46-1143-41AA-B13A-270BAEF98DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC770A46-1143-41AA-B13A-270BAEF98DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC770A46-1143-41AA-B13A-270BAEF98DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE259A69-DAD9-4DD3-84A1-9627F4E1E428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE259A69-DAD9-4DD3-84A1-9627F4E1E428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE259A69-DAD9-4DD3-84A1-9627F4E1E428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE259A69-DAD9-4DD3-84A1-9627F4E1E428}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DDE0A1B-4980-4565-931E-C9FD3B650E35}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://myshcietatfs:8080/tfs/mstrack_training
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Infosys.PackXprez.DataAccessLayer\\Infosys.PackXprez.DataAccessLayer.csproj
+		SccProjectName1 = Infosys.PackXprez.DataAccessLayer
+		SccLocalPath1 = Infosys.PackXprez.DataAccessLayer
+		SccProjectUniqueName2 = Infosys.PackXprez.WebService\\Infosys.PackXprez.WebService.csproj
+		SccProjectName2 = Infosys.PackXprez.WebService
+		SccLocalPath2 = Infosys.PackXprez.WebService
+		SccProjectUniqueName3 = UnitTestProject2\\UnitTestProject2.csproj
+		SccProjectName3 = UnitTestProject2
+		SccLocalPath3 = UnitTestProject2
+	EndGlobalSection
+EndGlobal
